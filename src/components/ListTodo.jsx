@@ -5,8 +5,6 @@ import {GrRadialSelected} from 'react-icons/gr'
 
 
 function ListTodo({deleteList, mongo, checkIcon}) {
-
-
   return (
     <>
         <ul className='flex-col text-white'>
