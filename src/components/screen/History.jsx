@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
 
-function History({mongo}) {
+function History({bigData}) {
+
+const [historyData, setHistoryData] = useState([])
 
 
-  const [data, setData] = useState([])
-  // const refresh = (mongo) => {
-  //   // const localStorageLength = localStorage.length;
-  //   // localStorage.setItem(localStorageLength + 1, JSON.stringify(mongo))
-  //   // let newData = []
-  //   //   newData.push(localStorage.getItem(localStorage.length));
-  //   setData(newData)
-  // }
-  useEffect(()=>{
-    localStorage.setItem('history', JSON.stringify([mongo]))
-    const newData = JSON.parse(localStorage.getItem('history'));
-    setData(newData)
-  },[])
+// setHistoryData(bigData)
+const refresh  = (bigData) =>{
+  // setHistoryData([...historyData, bigData.map(m=>{
+  //     return m
+  //   })])
+  //   console.log(bigData)
+  localStorage.setItem('history', JSON.stringify(bigData))
+}
+
+useEffect(()=>{
+  let newData = JSON.parse(localStorage.getItem('history'));
+  setHistoryData([...historyData, newData])
+},[])
+console.log(historyData)
 
   return (
-    <div>
-      {/* <button onClick={()=>{refresh(mongo)}}>refresh</button> */}
-      {data.map((elem, key)=>
+    <div className='text-white'>
+    <button onClick={()=>{refresh(bigData)}} >refresh</button>
+      {historyData.map((elem, id)=>
       <div>
           <ul>
-            <li key={key}>
-              {elem.text}
+            <li key={id}>
+              {elem.text},{elem.currentDate}
             </li>
           </ul>
       </div>

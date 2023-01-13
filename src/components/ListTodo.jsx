@@ -4,12 +4,12 @@ import {MdOutlineDeleteOutline} from 'react-icons/md'
 import {GrRadialSelected} from 'react-icons/gr'
 
 
-function ListTodo({deleteList, mongo, checkIcon}) {
+function ListTodo({deleteList, data, checkIcon}) {
   return (
     <>
         <ul className='flex-col text-white'>
-            {mongo.map((state,index) => (
-                <li className='checkLi' key={index}>
+            {data.map((state,id) => (
+                <li className='checkLi' key={id}>
                 <button onClick={()=>checkIcon(state.id)}>
                     {
                         state.complete?
