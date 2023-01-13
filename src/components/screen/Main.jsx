@@ -28,7 +28,7 @@ const Main = () => {
     const deleteList = (text) =>{
         const Todo = mongo.filter((list) => {
             setCount(count - 1)
-            return list !== text
+            return list !== text 
         })
         setMongo(Todo)
     }

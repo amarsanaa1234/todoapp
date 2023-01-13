@@ -31,7 +31,7 @@ code {
 }
 .clear-btn{
   @apply rounded-br-2xl text-3xl w-1/2 transition ease-in-out delay-150 
-  bg-blue-500 hover:-translate-y-0 hover:scale-110 hover:bg-indigo-500 duration-300;
+  bg-blue-500 hover:-translate-y-0 hover:scale-110 hover:bg-indigo-500  ;
 }
 .swipe-btn{
   @apply w-40 h-16 bg-slate-300 border-2 

@@ -5,8 +5,6 @@ import {GrRadialSelected} from 'react-icons/gr'
 
 
 function ListTodo({deleteList, mongo, checkIcon}) {
-
-
   return (
     <>
         <ul className='flex-col text-white'>
@@ -14,7 +12,7 @@ function ListTodo({deleteList, mongo, checkIcon}) {
                 <li className='checkLi' key={index}>
                 <button onClick={()=>checkIcon(state.id)}>
                     {
-                        state.complete?
+                        state.complete? 
                             <BsCheckCircle className='checkIcon' />:
                             <GrRadialSelected className='checkIcon'/>
                     }
