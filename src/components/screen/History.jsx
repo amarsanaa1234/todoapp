@@ -1,37 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-function History({bigData}) {
-
-const [historyData, setHistoryData] = useState([])
+function History({data}) {
 
 
-// setHistoryData(bigData)
-const refresh  = (bigData) =>{
-  // setHistoryData([...historyData, bigData.map(m=>{
-  //     return m
-  //   })])
-  //   console.log(bigData)
-  localStorage.setItem('history', JSON.stringify(bigData))
-}
+// const refresh  = (historyData) =>{
+//   localStorage.setItem('history', JSON.stringify(historyData))
+//   console.log(historyData)  
+// }
 
-useEffect(()=>{
-  let newData = JSON.parse(localStorage.getItem('history'));
-  setHistoryData([...historyData, newData])
-},[])
-console.log(historyData)
-
+// useEffect(()=>{
+//   const newData = JSON.parse(localStorage.getItem('history'));
+//   setSaveData(newData)
+// },[])
+console.log(data)
   return (
     <div className='text-white'>
-    <button onClick={()=>{refresh(bigData)}} >refresh</button>
-      {historyData.map((elem, id)=>
-      <div>
-          <ul>
-            <li key={id}>
-              {elem.text},{elem.currentDate}
-            </li>
-          </ul>
-      </div>
-      )}
+      {data.map((state,id) => (
+        state.listDeleted ? 
+                  <>
+                    <ul>
+                      <li className='checkLi' key={id}>
+                          <h2>{state.text}</h2>
+                          <h2>{state.currentDate}</h2>
+                      </li>
+                    </ul>
+                  </> : ''
+              ))}
     </div>
   )
 }

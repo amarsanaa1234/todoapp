@@ -9,20 +9,23 @@ function ListTodo({deleteList, data, checkIcon}) {
     <>
         <ul className='flex-col text-white'>
             {data.map((state,id) => (
-                <li className='checkLi' key={id}>
-                <button onClick={()=>checkIcon(state.id)}>
-                    {
-                        state.complete?
-                            <BsCheckCircle className='checkIcon' />:
-                            <GrRadialSelected className='checkIcon'/>
-                    }
-                </button>
-                    <h2 className={'checkText' + (state.complete ? ' line-through' : '')}>{state.text}</h2>
-                    <h2 className={'checkText' + (state.complete ? ' line-through' : '')}>{state.currentDate}</h2>
-                    <button onClick={()=>{deleteList(state)}} className='mr-6 mb-3'>
-                        <MdOutlineDeleteOutline className='checkIcon'/>
+                state.listDeleted ? '' : <>
+                    <li className='checkLi' key={id}>
+                    <button onClick={()=>checkIcon(state.id)}>
+                        {
+                            state.complete?
+                                <BsCheckCircle className='checkIcon' />:
+                                <GrRadialSelected className='checkIcon'/>
+                        }
                     </button>
-                </li>
+                        <h2 className={'checkText' + (state.complete ? ' line-through' : '')}>{state.text}</h2>
+                        <h2 className={'checkText' + (state.complete ? ' line-through' : '')}>{state.currentDate}</h2>
+                        <button onClick={()=>{deleteList(state)}} className='mr-6 mb-3'>
+                            <MdOutlineDeleteOutline className='checkIcon'/>
+                        </button>
+                    </li>
+                </>
+                
             ))}
             </ul>
     </>

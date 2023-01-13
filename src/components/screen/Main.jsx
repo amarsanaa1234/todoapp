@@ -11,15 +11,14 @@ const Main = () => {
     const [count ,setCount] = useState(1)
     const [swipe, setSwipe] = useState(true)
 
-    const [bigData, setBigData] = useState([])
-
     const onSubmit = (value, date) =>{
         
         const newItem = {
             id: data.length + 1,
             text: value,
             currentDate: date,
-            complete: false
+            complete: false,
+            listDeleted:false
         }
         setState("")
         setCount(count + 1)
@@ -36,12 +35,17 @@ const Main = () => {
 
 
     const deleteList = (text) =>{
-        setBigData([...bigData, text])
-        const Todo = data.filter((list) => {
-            setCount(count - 1)
-            return list !== text
-        })
-    setData(Todo)
+        setData( 
+            data.map(m=>{
+                if(m === text){
+                    return {
+                        ...m,
+                        listDeleted: !m.listDeleted
+                    }
+                }
+                return m
+            })
+        )
     }
 
 
@@ -52,11 +56,6 @@ const Main = () => {
                 return ''
             }
         })
-
-        setBigData(data.map(m=>{
-            return m
-        })
-        )
         setData(all)
         
     }
@@ -99,7 +98,7 @@ const Main = () => {
                 </div>
             </div>
         </>
-        : <History bigData={bigData}/> }
+        : <History data={data}/> }
         <button 
             className='swipe-btn hover:bg-violet-600 active:bg-violet-700 
                 focus:outline-none focus:ring focus:ring-violet-300'
