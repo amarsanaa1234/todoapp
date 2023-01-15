@@ -5,10 +5,10 @@ import History from './History';
 
 
 const Main = () => {
-    
+
     const [state, setState] = useState('')
     const [data, setData] = useState([])
-    const [count ,setCount] = useState(1)
+    const [count ,setCount] = useState(0)
     const [swipe, setSwipe] = useState(true)
 
     const onSubmit = (value, date) =>{
@@ -35,6 +35,7 @@ const Main = () => {
 
 
     const deleteList = (text) =>{
+        setCount(count -1)
         setData( 
             data.map(m=>{
                 if(m === text){
