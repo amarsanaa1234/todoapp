@@ -7,8 +7,6 @@ function History({data}) {
 const [groupData, setGroupData] = useState([])
 const [swipe, setSwipe] = useState(true)
 
-// console.log(data)
-
 const groupBy = data.reduce((state, item)=>{
   (state[item.currentDate]=state[item.currentDate] || []).push(item)
   return state
@@ -19,33 +17,21 @@ useEffect(() => {
   setSwipe(!swipe)
 }, [])
 
-
-console.log(groupData, '1234')
+// console.log(groupData,'data')
 
 return (
     <div className='text-white'>
-      <ul className='flex'>
-        {data.map((state,id) => (
-          state.listDeleted ?
-                <li className='m-2' key={id}>
-                    <h2 className='text-3xl ml-3 border-b-2 border-zinc-500 w-full'>{state.currentDate}</h2>
-                    <h2 className={'text-2xl ml-3 border-b-2 border-zinc-500 w-full' + (state.complete ? ' line-through' : '')}>{state.text}</h2>
-                </li>
-                     : ''
-                ))}
-      </ul>
-      <div>
-        <button>nmg dar</button>          
-          <div>
-            {groupBy.map((item)=>{
-              <ul>
-              {console.log(item, '123124')}
-              {/* {item.map((subItems, sIndex) => {
-                <li key={sIndex}> {subItems.text} </li>;
-                })} */}
-              </ul>
-            })}
-          </div>
+      <div className='flex justify-around w-screen'>
+        {Object.keys(groupData).map((item, i)=>(
+          <ul key={i} className='text-2xl'>
+          {item}
+            {groupData[item].map((state, id) => (
+              <li className='m-2' key={id}>
+                <h2 className={'text-2xl ml-3 border-b-2 border-zinc-500 w-full' + (state.complete ? ' line-through' : '')}>{state.text}</h2>
+            </li>
+            ))}
+          </ul>
+        ))}
       </div>
     </div>
   )
